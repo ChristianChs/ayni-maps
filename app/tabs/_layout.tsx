@@ -7,7 +7,10 @@ const TabsLayout = () => {
   return (
     <Tabs screenOptions={{ 
       tabBarActiveTintColor: 'indigo', 
-      headerShown:false
+      // headerShown:false,
+      tabBarStyle:{
+        backgroundColor:'white'
+      }
       }}>
       <Tabs.Screen
         name="home/index"
