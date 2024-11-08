@@ -14,7 +14,7 @@ const RouteScreen = () => {
                         <Text className='text-2xl font-work-regular'>{item.title}</Text>
                         <Text className=''>{item.description}</Text>
                         <View className='flex flex-row justify-between mt-2'>
-                            <Link href={`/(stack)/routes/${item.id}`} className='text-primary'>
+                            <Link href={`/tabs/(stack)/routes/${item.id}`} className='text-primary'>
                                 Ver Detalles
                             </Link>
                         </View>

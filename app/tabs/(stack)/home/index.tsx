@@ -10,7 +10,7 @@ const HomeScreen = () => {
             <View className='px-10 mb-2'>
                 <CustomButton
                     color='green'
-                    onPress={() => router.push('/login')}
+                    onPress={() => router.push('/tabs/(stack)/login')}
                 >
                     Login
                 </CustomButton>
@@ -18,7 +18,7 @@ const HomeScreen = () => {
             <View className='px-10'>
                 <CustomButton
                     color='green'
-                    onPress={() => router.push('/routes')}
+                    onPress={() => router.push('/tabs/(stack)/routes')}
                 >
                     Rutas
                 </CustomButton>
