@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from 'react
 import { Icon } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ProfileScreen: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<'rutas' | 'favoritos'>('rutas');
@@ -43,63 +44,65 @@ const ProfileScreen: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton}>
-        <Icon name="arrow-back" size={24} color="black" />
-      </TouchableOpacity>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.backButton}>
+          <Icon name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.configButton} onPress={handleConfirmPress}>
-        <Ionicons name="ellipsis-vertical" size={24} color="black" />
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.configButton} onPress={handleConfirmPress}>
+          <Ionicons name="ellipsis-vertical" size={24} color="black" />
+        </TouchableOpacity>
 
-      <View style={styles.profileInfo}>
-        <Image source={{ uri: 'https://via.placeholder.com/100' }} style={styles.profileImage} />
-        <Text style={styles.name}>{user.name}</Text>
-        <Text style={styles.username}>{user.username}</Text>
-        <View style={styles.statsContainer}>
-          <View style={styles.stat}>
-            <Text style={styles.statNumber}>{user.routesCompleted}</Text>
-            <Text style={styles.statLabel}>Rutas realizadas</Text>
+        <View style={styles.profileInfo}>
+          <Image source={{ uri: 'https://via.placeholder.com/100' }} style={styles.profileImage} />
+          <Text style={styles.name}>{user.name}</Text>
+          <Text style={styles.username}>{user.username}</Text>
+          <View style={styles.statsContainer}>
+            <View style={styles.stat}>
+              <Text style={styles.statNumber}>{user.routesCompleted}</Text>
+              <Text style={styles.statLabel}>Rutas realizadas</Text>
+            </View>
+            <View style={styles.stat}>
+              <Text style={styles.statNumber}>{user.routesPublished}</Text>
+              <Text style={styles.statLabel}>Rutas publicadas</Text>
+            </View>
+            <View style={styles.stat}>
+              <Text style={styles.statNumber}>{user.followers}</Text>
+              <Text style={styles.statLabel}>Seguidores</Text>
+            </View>
           </View>
-          <View style={styles.stat}>
-            <Text style={styles.statNumber}>{user.routesPublished}</Text>
-            <Text style={styles.statLabel}>Rutas publicadas</Text>
-          </View>
-          <View style={styles.stat}>
-            <Text style={styles.statNumber}>{user.followers}</Text>
-            <Text style={styles.statLabel}>Seguidores</Text>
-          </View>
+          <Text style={styles.location}>
+            <Icon name="place" size={16} color="green" /> {user.location}
+          </Text>
+          <Text style={styles.instagramHandle}>
+            <Icon name="instagram" type="font-awesome" size={16} /> {user.username}
+          </Text>
         </View>
-        <Text style={styles.location}>
-          <Icon name="place" size={16} color="green" /> {user.location}
-        </Text>
-        <Text style={styles.instagramHandle}>
-          <Icon name="instagram" type="font-awesome" size={16} /> {user.username}
-        </Text>
-      </View>
 
-      <View style={styles.tabsContainer}>
-        <TouchableOpacity onPress={() => setSelectedTab('rutas')} style={[styles.tab, selectedTab === 'rutas' && styles.activeTab]}>
-          <Icon name="map" size={24} color={selectedTab === 'rutas' ? 'green' : 'black'} />
-          <Text style={[styles.tabLabel, selectedTab === 'rutas' && styles.activeTabLabel]}>RUTAS</Text>
+        <View style={styles.tabsContainer}>
+          <TouchableOpacity onPress={() => setSelectedTab('rutas')} style={[styles.tab, selectedTab === 'rutas' && styles.activeTab]}>
+            <Icon name="map" size={24} color={selectedTab === 'rutas' ? 'green' : 'black'} />
+            <Text style={[styles.tabLabel, selectedTab === 'rutas' && styles.activeTabLabel]}>RUTAS</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedTab('favoritos')} style={[styles.tab, selectedTab === 'favoritos' && styles.activeTab]}>
+            <Icon name="favorite" size={24} color={selectedTab === 'favoritos' ? 'green' : 'black'} />
+            <Text style={[styles.tabLabel, selectedTab === 'favoritos' && styles.activeTabLabel]}>FAVORITOS</Text>
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity onPress={handleRoutes}>
+          <FlatList
+            data={selectedTab === 'rutas' ? routes : favorites}
+            renderItem={renderRoute}
+            keyExtractor={(item) => item.id}
+            numColumns={2}
+            contentContainerStyle={styles.routesList}
+          />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setSelectedTab('favoritos')} style={[styles.tab, selectedTab === 'favoritos' && styles.activeTab]}>
-          <Icon name="favorite" size={24} color={selectedTab === 'favoritos' ? 'green' : 'black'} />
-          <Text style={[styles.tabLabel, selectedTab === 'favoritos' && styles.activeTabLabel]}>FAVORITOS</Text>
-        </TouchableOpacity>
+
       </View>
-      
-      <TouchableOpacity onPress={handleRoutes}>
-        <FlatList
-          data={selectedTab === 'rutas' ? routes : favorites}
-          renderItem={renderRoute}
-          keyExtractor={(item) => item.id}
-          numColumns={2}
-          contentContainerStyle={styles.routesList}
-        />
-      </TouchableOpacity>
-      
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -217,6 +220,10 @@ const styles = StyleSheet.create({
   routeDescription: {
     fontSize: 12,
     color: '#666',
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'white', // puedes configurar un fondo si es necesario
   },
 });
 

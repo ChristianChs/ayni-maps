@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { router } from 'expo-router'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PersonalInfoScreen: React.FC = () => {
   const [username, setUsername] = useState('beder_mon');
@@ -17,57 +18,59 @@ const PersonalInfoScreen: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>INFORMACIÓN PERSONAL</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.title}>INFORMACIÓN PERSONAL</Text>
 
-      <Text style={styles.label}>Nombre de usuario</Text>
-      <TextInput
-        style={styles.input}
-        value={username}
-        onChangeText={setUsername}
-        placeholder="Nombre de usuario"
-      />
-
-      <Text style={styles.label}>Ciudad de residencia</Text>
-      <TextInput
-        style={styles.input}
-        value={city}
-        onChangeText={setCity}
-        placeholder="Ciudad de residencia"
-      />
-
-      <Text style={styles.label}>Contraseña</Text>
-      <View style={styles.passwordContainer}>
+        <Text style={styles.label}>Nombre de usuario</Text>
         <TextInput
-          style={styles.passwordInput}
-          value={password}
-          onChangeText={setPassword}
-          placeholder="Contraseña"
-          secureTextEntry={!showPassword}
+          style={styles.input}
+          value={username}
+          onChangeText={setUsername}
+          placeholder="Nombre de usuario"
         />
-        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-          <Icon name={showPassword ? 'eye-off' : 'eye'} type="ionicon" size={24} color="green" />
+
+        <Text style={styles.label}>Ciudad de residencia</Text>
+        <TextInput
+          style={styles.input}
+          value={city}
+          onChangeText={setCity}
+          placeholder="Ciudad de residencia"
+        />
+
+        <Text style={styles.label}>Contraseña</Text>
+        <View style={styles.passwordContainer}>
+          <TextInput
+            style={styles.passwordInput}
+            value={password}
+            onChangeText={setPassword}
+            placeholder="Contraseña"
+            secureTextEntry={!showPassword}
+          />
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+            <Icon name={showPassword ? 'eye-off' : 'eye'} type="ionicon" size={24} color="green" />
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.label}>Confirmar contraseña</Text>
+        <View style={styles.passwordContainer}>
+          <TextInput
+            style={styles.passwordInput}
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            placeholder="Confirmar contraseña"
+            secureTextEntry={!showConfirmPassword}
+          />
+          <TouchableOpacity onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
+            <Icon name={showConfirmPassword ? 'eye-off' : 'eye'} type="ionicon" size={24} color="green" />
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity style={styles.saveButton} onPress={handleSaveChanges}>
+          <Text style={styles.saveButtonText}>Guardar cambios</Text>
         </TouchableOpacity>
       </View>
-
-      <Text style={styles.label}>Confirmar contraseña</Text>
-      <View style={styles.passwordContainer}>
-        <TextInput
-          style={styles.passwordInput}
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-          placeholder="Confirmar contraseña"
-          secureTextEntry={!showConfirmPassword}
-        />
-        <TouchableOpacity onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
-          <Icon name={showConfirmPassword ? 'eye-off' : 'eye'} type="ionicon" size={24} color="green" />
-        </TouchableOpacity>
-      </View>
-
-      <TouchableOpacity style={styles.saveButton} onPress={handleSaveChanges}>
-        <Text style={styles.saveButtonText}>Guardar cambios</Text>
-      </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -125,6 +128,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'white', // puedes configurar un fondo si es necesario
   },
 });
 
