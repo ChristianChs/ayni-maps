@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 const ProfileScreen: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<'rutas' | 'favoritos'>('rutas');
@@ -32,10 +34,22 @@ const ProfileScreen: React.FC = () => {
     </View>
   );
 
+  const handleConfirmPress = () => {
+    router.push('/tabs/profile/config');
+  };
+
+  const handleRoutes = () => {
+    router.push('/tabs/explore/description');
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backButton}>
         <Icon name="arrow-back" size={24} color="black" />
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.configButton} onPress={handleConfirmPress}>
+        <Ionicons name="ellipsis-vertical" size={24} color="black" />
       </TouchableOpacity>
 
       <View style={styles.profileInfo}>
@@ -74,14 +88,17 @@ const ProfileScreen: React.FC = () => {
           <Text style={[styles.tabLabel, selectedTab === 'favoritos' && styles.activeTabLabel]}>FAVORITOS</Text>
         </TouchableOpacity>
       </View>
-
-      <FlatList
-        data={selectedTab === 'rutas' ? routes : favorites}
-        renderItem={renderRoute}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-        contentContainerStyle={styles.routesList}
-      />
+      
+      <TouchableOpacity onPress={handleRoutes}>
+        <FlatList
+          data={selectedTab === 'rutas' ? routes : favorites}
+          renderItem={renderRoute}
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+          contentContainerStyle={styles.routesList}
+        />
+      </TouchableOpacity>
+      
     </View>
   );
 };
@@ -96,6 +113,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 40,
     left: 20,
+    zIndex: 1,
+  },
+  configButton: {
+    position: 'absolute',
+    top: 40,
+    right: 20,
     zIndex: 1,
   },
   profileInfo: {
