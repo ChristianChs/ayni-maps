@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, GestureResponderEvent } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 type Ruta = {
   id: string;
@@ -22,13 +23,16 @@ const HomeScreen = () => {
 
   const handleNavPress = (tab: string) => {
     setActiveTab(tab);
-    // Aquí puedes agregar la lógica de navegación si estás usando React Navigation
-    // o cualquier otra lógica que desees para cambiar de sección.
   };
 
   const renderRuta = ({ item }: { item: Ruta }) => (
     <TouchableOpacity style={styles.rutaContainer} onPress={() => console.log(`Clicked on ${item.nombre}`)}>
-      <Image source={require('../../../assets/images/mapa.png')} style={styles.mapThumbnail} />
+      <View style={styles.imageContainer}>
+        <Image source={require('../../../assets/images/mapa.png')} style={styles.mapThumbnail} />
+        {item.favorita && (
+          <FontAwesome name="heart" size={20} color="#8FD14F" style={styles.favoriteIcon} />
+        )}
+      </View>
       <Text style={styles.rutaNombre}>{item.nombre}</Text>
       <Text style={styles.rutaUbicacion}>{item.ubicacion}</Text>
     </TouchableOpacity>
@@ -36,24 +40,20 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-        <View style={styles.navbar}>
-            <TouchableOpacity
-                onPress={() => handleNavPress('Todos')}
-                style={[styles.navItem, activeTab === 'Todos' && styles.activeNavItem]}
-            >
-                <Text style={[styles.navText, activeTab === 'Todos' && styles.activeNavText]}>
-                Todos
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                onPress={() => handleNavPress('Mis rutas')}
-                style={[styles.navItem, activeTab === 'Mis rutas' && styles.activeNavItem]}
-            >
-                <Text style={[styles.navText, activeTab === 'Mis rutas' && styles.activeNavText]}>
-                Mis rutas
-                </Text>
-            </TouchableOpacity>
-        </View>
+      <View style={styles.navbar}>
+        <TouchableOpacity
+          onPress={() => handleNavPress('Todos')}
+          style={[styles.navItem, activeTab === 'Todos' && styles.activeNavItem]}
+        >
+          <Text style={[styles.navText, activeTab === 'Todos' && styles.activeNavText]}>Todos</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => handleNavPress('Mis rutas')}
+          style={[styles.navItem, activeTab === 'Mis rutas' && styles.activeNavItem]}
+        >
+          <Text style={[styles.navText, activeTab === 'Mis rutas' && styles.activeNavText]}>Mis rutas</Text>
+        </TouchableOpacity>
+      </View>
 
       <FlatList
         data={rutas}
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#8FD14F',
   },
   listContainer: {
-    alignItems: 'center',
+    paddingHorizontal: 10,
     paddingBottom: 60,
   },
   rutaContainer: {
@@ -105,30 +105,45 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     backgroundColor: '#fff',
-    borderRadius: 8,
+    borderRadius: 10,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.2,
     shadowRadius: 10,
     elevation: 5,
+    position: 'relative',
+  },
+  imageContainer: {
+    position: 'relative',
+    width: '100%',
+    height: 120,
+    borderRadius: 10,
+    overflow: 'hidden',
   },
   mapThumbnail: {
-    width: 100,
-    height: 100,
-    marginBottom: 10,
+    width: '100%',
+    height: '100%',
+  },
+  favoriteIcon: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 2,
   },
   rutaNombre: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#2e2e50',
     textAlign: 'center',
+    marginTop: 8,
   },
   rutaUbicacion: {
     fontSize: 14,
     color: '#707070',
     textAlign: 'center',
-    marginBottom: 5,
   },
   newRouteButton: {
     position: 'absolute',
