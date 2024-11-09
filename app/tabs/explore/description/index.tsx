@@ -270,6 +270,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     marginBottom: 10,
+    marginRight: 10,
     backgroundColor: '#d9d9d9',
   },
   commentContent: {

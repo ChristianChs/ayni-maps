@@ -36,7 +36,7 @@ const RouteExploreScreen = () => {
   };
 
   const handleConfirmPress = () => {
-    router.push('/tabs/explore/description/');
+    router.push('/tabs/explore/description');
   };
 
   return (
