@@ -35,105 +35,112 @@ const routesData: RouteType[] = [
   },
   {
     id: 2,
-    name: "Cusco Cultural Route",
+    name: "Arequipa Gastronomic Route",
     points: [
-      { id: 1, latitude: -13.516667, longitude: -71.978056, title: "Plaza de Armas de Cusco" },
-      { id: 2, latitude: -13.5225, longitude: -71.9761, title: "Qorikancha" },
-      { id: 3, latitude: -13.5171, longitude: -71.9783, title: "Catedral del Cusco" }
+      { id: 1, latitude: -16.4018, longitude: -71.5359, title: "Mercado San Camilo" },
+      { id: 2, latitude: -16.4008, longitude: -71.5353, title: "Calle Jerusalén" },
+      { id: 3, latitude: -16.4029, longitude: -71.5334, title: "La Nueva Palomino" }
     ]
   },
   {
     id: 3,
-    name: "Lima Coastal Route",
+    name: "Arequipa Nature Route",
     points: [
-      { id: 1, latitude: -12.0464, longitude: -77.0428, title: "Plaza Mayor de Lima" },
-      { id: 2, latitude: -12.0433, longitude: -77.0283, title: "Malecón de Miraflores" },
-      { id: 3, latitude: -12.0458, longitude: -77.0303, title: "Parque Kennedy" }
+      { id: 1, latitude: -16.3497, longitude: -71.5407, title: "Reserva Nacional de Salinas" },
+      { id: 2, latitude: -16.3265, longitude: -71.5461, title: "Laguna de Salinas" },
+      { id: 3, latitude: -16.3633, longitude: -71.5333, title: "Volcán Misti" }
     ]
   },
   {
     id: 4,
-    name: "Tacna Adventure Route",
+    name: "Arequipa Adventure Route",
     points: [
-      { id: 1, latitude: -18.0139, longitude: -70.2513, title: "Museo Ferroviario" },
-      { id: 2, latitude: -18.0056, longitude: -70.2483, title: "Arco Parabólico" },
-      { id: 3, latitude: -18.0078, longitude: -70.2445, title: "Plaza de Tacna" }
+      { id: 1, latitude: -15.6414, longitude: -71.9816, title: "Cañón del Colca" },
+      { id: 2, latitude: -15.6426, longitude: -71.6092, title: "Chivay" },
+      { id: 3, latitude: -15.6419, longitude: -71.9808, title: "Cruz del Cóndor" }
     ]
   },
   {
     id: 5,
-    name: "Trujillo Colonial Route",
+    name: "Arequipa Handicraft Route",
     points: [
-      { id: 1, latitude: -8.1095, longitude: -79.0215, title: "Plaza de Armas de Trujillo" },
-      { id: 2, latitude: -8.1184, longitude: -79.0324, title: "Huaca del Sol y la Luna" },
-      { id: 3, latitude: -8.0805, longitude: -79.1057, title: "Chan Chan" }
+      { id: 1, latitude: -16.3983, longitude: -71.5367, title: "Callejón de las Peñas" },
+      { id: 2, latitude: -16.4029, longitude: -71.5359, title: "Mercado San Camilo" },
+      { id: 3, latitude: -16.4044, longitude: -71.5369, title: "Feria de Yanahuara" }
     ]
   },
   {
     id: 6,
-    name: "Puno Lake Route",
+    name: "Arequipa Thermal Waters Route",
     points: [
-      { id: 1, latitude: -15.8402, longitude: -70.0219, title: "Plaza de Armas de Puno" },
-      { id: 2, latitude: -15.8282, longitude: -69.9886, title: "Lago Titicaca" },
-      { id: 3, latitude: -15.8271, longitude: -69.9937, title: "Uros Floating Islands" }
+      { id: 1, latitude: -16.3532, longitude: -71.5749, title: "Baños Termales de Yura" },
+      { id: 2, latitude: -15.6426, longitude: -71.6092, title: "Chivay" },
+      { id: 3, latitude: -15.6231, longitude: -71.5934, title: "Aguas Calientes en Colca" }
     ]
   },
   {
     id: 7,
-    name: "Iquitos Jungle Route",
+    name: "Arequipa Astronomical Observation Route",
     points: [
-      { id: 1, latitude: -3.7491, longitude: -73.2538, title: "Plaza de Armas de Iquitos" },
-      { id: 2, latitude: -3.7483, longitude: -73.2455, title: "Malecón Tarapacá" },
-      { id: 3, latitude: -3.7438, longitude: -73.2516, title: "Belen Market" }
+      { id: 1, latitude: -16.4386, longitude: -71.5402, title: "Molino de Sabandía" },
+      { id: 2, latitude: -16.3474, longitude: -71.5703, title: "Mirador de Chachani" },
+      { id: 3, latitude: -16.3633, longitude: -71.5333, title: "Mirador del Misti" }
     ]
   },
   {
     id: 8,
-    name: "Chiclayo Route",
+    name: "Arequipa Colonial Architecture Route",
     points: [
-      { id: 1, latitude: -6.7714, longitude: -79.8409, title: "Plaza de Armas de Chiclayo" },
-      { id: 2, latitude: -6.7677, longitude: -79.8264, title: "Museo Tumbas Reales de Sipán" },
-      { id: 3, latitude: -6.7624, longitude: -79.8457, title: "Pimentel Beach" }
+      { id: 1, latitude: -16.3988, longitude: -71.5369, title: "Catedral de Arequipa" },
+      { id: 2, latitude: -16.3992, longitude: -71.5364, title: "Iglesia de la Compañía" },
+      { id: 3, latitude: -16.3994, longitude: -71.5356, title: "Palacio Goyeneche" }
     ]
   },
   {
     id: 9,
-    name: "Piura Desert Route",
+    name: "Arequipa Local Festivities Route",
     points: [
-      { id: 1, latitude: -5.1945, longitude: -80.6328, title: "Plaza de Armas de Piura" },
-      { id: 2, latitude: -4.8811, longitude: -81.2781, title: "Máncora Beach" },
-      { id: 3, latitude: -5.1978, longitude: -80.6305, title: "Catacaos Market" }
+      { id: 1, latitude: -16.3988, longitude: -71.5369, title: "Plaza de Armas" },
+      { id: 2, latitude: -16.4322, longitude: -71.5443, title: "Cerro Juli" },
+      { id: 3, latitude: -16.3980, longitude: -71.5353, title: "Campo Redondo" }
     ]
   },
   {
     id: 10,
-    name: "Huancayo Highland Route",
+    name: "Arequipa Art and Culture Route",
     points: [
-      { id: 1, latitude: -12.0695, longitude: -75.2062, title: "Cerrito de la Libertad" },
-      { id: 2, latitude: -12.0652, longitude: -75.2103, title: "Parque de la Identidad Wanka" },
-      { id: 3, latitude: -12.0578, longitude: -75.2145, title: "Plaza Huamanmarca" }
+      { id: 1, latitude: -16.4018, longitude: -71.5359, title: "Barrio de San Lázaro" },
+      { id: 2, latitude: -16.3997, longitude: -71.5362, title: "Museo de Arte Virreinal Santa Teresa" },
+      { id: 3, latitude: -16.3996, longitude: -71.5353, title: "Centro Cultural Peruano Norteamericano" }
     ]
   }
 ];
 
+
 export default function Map() {
   const { id } = useLocalSearchParams();
+  console.log("Route ID from params:", id); // Verifica si `id` está siendo recibido
+
+  const routeId = Number(id); 
+  const selectedRoute = routesData.find((r) => r.id === routeId);
+
+  if (!selectedRoute) {
+    console.error("Ruta no encontrada con el ID:", routeId);
+  }
+
   const [origin, setOrigin] = useState<{ latitude: number; longitude: number } | null>(null);
-  const [routeInfo, setRouteInfo] = useState<{ distance: number; duration: number } | null>(null);
+  const [routeInfo, setRouteInfo] = useState<{
+    distance: number;
+    duration: number;
+    walkingDuration: number;
+    drivingDuration: number;
+  } | null>(null);
   const [visitedPoints, setVisitedPoints] = useState<number[]>([]);
   const [showCongratsModal, setShowCongratsModal] = useState<boolean>(false);
   const [insigniaOtorgada, setInsigniaOtorgada] = useState<boolean>(false);
 
-  const routeId = Number(id); // Asegúrate de que el id sea un número
-  const selectedRoute = routesData.find((r) => r.id === routeId);
-
   useEffect(() => {
-    console.log("ID de la ruta de llegada:", routeId); // Verifica si el id se está recibiendo correctamente
-
-    if (!selectedRoute) {
-      console.error("Ruta no encontrada");
-      return;
-    }
+    if (!selectedRoute) return;
 
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -202,9 +209,17 @@ export default function Map() {
   };
 
   const handleDirectionsReady = (result: { distance: number; duration: number }) => {
+    const walkingSpeed = 5; // km/h
+    const drivingSpeed = 40; // km/h
+
+    const walkingDuration = (result.distance / walkingSpeed) * 60;
+    const drivingDuration = (result.distance / drivingSpeed) * 60;
+
     setRouteInfo({
       distance: result.distance,
       duration: result.duration,
+      walkingDuration,
+      drivingDuration,
     });
   };
 
@@ -264,6 +279,22 @@ export default function Map() {
         )}
       </MapView>
 
+      <View style={styles.infoContainer}>
+        {routeInfo && (
+          <>
+            <Text style={styles.infoText}>
+              Distancia: {routeInfo.distance.toFixed(2)} km
+            </Text>
+            <Text style={styles.infoText}>
+              Tiempo aproximado a pie: {routeInfo.walkingDuration.toFixed(0)} minutos
+            </Text>
+            <Text style={styles.infoText}>
+              Tiempo aproximado en carro: {routeInfo.drivingDuration.toFixed(0)} minutos
+            </Text>
+          </>
+        )}
+      </View>
+
       <Modal isVisible={showCongratsModal} onBackdropPress={() => setShowCongratsModal(false)}>
         <View style={styles.modalContent}>
           <Text style={styles.congratsText}>¡Felicidades!</Text>
@@ -290,6 +321,22 @@ const styles = StyleSheet.create({
   map: {
     width: '100%',
     height: '100%',
+  },
+  infoContainer: {
+    position: 'absolute',
+    bottom: 100,
+    left: 10,
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+  },
+  infoText: {
+    fontSize: 16,
+    color: '#333',
   },
   modalContent: {
     backgroundColor: 'white',

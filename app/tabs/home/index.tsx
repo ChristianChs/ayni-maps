@@ -11,12 +11,16 @@ type Ruta = {
 };
 
 const rutas: Ruta[] = [
-  { id: '1', nombre: 'Ruta de Tacna', ubicacion: 'Pocollay - G.A. - Paseo Cívico', favorita: false },
-  { id: '2', nombre: 'Ruta de Tacna', ubicacion: 'Pocollay - G.A. - Paseo Cívico', favorita: true },
-  { id: '3', nombre: 'Ruta de Tacna', ubicacion: 'Pocollay - G.A. - Paseo Cívico', favorita: false },
-  { id: '4', nombre: 'Ruta de Tacna', ubicacion: 'Pocollay - G.A. - Paseo Cívico', favorita: true },
-  { id: '5', nombre: 'Ruta de Tacna', ubicacion: 'Pocollay - G.A. - Paseo Cívico', favorita: false },
-  { id: '6', nombre: 'Ruta de Tacna', ubicacion: 'Pocollay - G.A. - Paseo Cívico', favorita: true },
+  { id: '1', nombre: 'Ruta Gastronómica', ubicacion: 'Mercado San Camilo - Plaza de Armas - Calle Jerusalén', favorita: false },
+  { id: '2', nombre: 'Ruta de Naturaleza', ubicacion: 'Reserva Nacional de Salinas - Laguna de Salinas - Volcán Misti', favorita: true },
+  { id: '3', nombre: 'Ruta de Aventura', ubicacion: 'Cañón del Colca - Chivay - Cruz del Cóndor', favorita: false },
+  { id: '4', nombre: 'Ruta Histórica', ubicacion: 'Convento de Santa Catalina - Casa del Moral - Catedral de Arequipa', favorita: true },
+  { id: '5', nombre: 'Ruta Cultural', ubicacion: 'Barrio de San Lázaro - Yanahuara - Museo Santuarios Andinos', favorita: false },
+  { id: '6', nombre: 'Ruta Artesanal', ubicacion: 'Callejón de las Peñas - Mercado San Camilo - Feria de Yanahuara', favorita: true },
+  { id: '7', nombre: 'Ruta de Aguas Termales', ubicacion: 'Baños Termales de Yura - Chivay - Aguas Calientes en Colca', favorita: false },
+  { id: '8', nombre: 'Ruta de Observación Astronómica', ubicacion: 'Molino de Sabandía - Mirador de Chachani - Mirador del Misti', favorita: true },
+  { id: '9', nombre: 'Ruta de Arquitectura Colonial', ubicacion: 'Catedral de Arequipa - Iglesia de la Compañía - Palacio Goyeneche', favorita: false },
+  { id: '10', nombre: 'Ruta de Festividades', ubicacion: 'Plaza de Armas - Cerro Juli - Campo Redondo', favorita: true },
 ];
 
 const HomeScreen = () => {
