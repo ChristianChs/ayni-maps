@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Link, router } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Ruta = {
   id: string;
@@ -46,6 +47,7 @@ const HomeScreen = () => {
   );
 
   return (
+    
     <View style={styles.container}>
       <View style={styles.navbar}>
         <TouchableOpacity
@@ -69,9 +71,11 @@ const HomeScreen = () => {
         numColumns={2}
         contentContainerStyle={styles.listContainer}
       />
+      <Link href={`/tabs/home/addruta`} asChild>
       <TouchableOpacity style={styles.newRouteButton}>
         <Text style={styles.newRouteButtonText}>+ Nueva ruta</Text>
       </TouchableOpacity>
+      </Link>
     </View>
   );
 };
@@ -171,6 +175,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
+  
 });
 
 export default HomeScreen;

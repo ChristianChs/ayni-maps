@@ -47,103 +47,108 @@ const RouteDescriptionScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView style={styles.container}>
-        {/* Navbar */}
-        <View style={styles.navbar}>
-          <Ionicons name="map" size={24} color="#8FD14F" />
-          <Text style={styles.navbarText}>Ruta de Arequipa</Text>
-        </View>
+      <FlatList
+        data={comments}  
+        ListHeaderComponent={() => (
+          <>
+            {/* Navbar */}
+            <View style={styles.navbar}>
+              <Ionicons name="map" size={24} color="#8FD14F" />
+              <Text style={styles.navbarText}>Ruta de Arequipa</Text>
+            </View>
 
-        {/* Mapa con ruta y marcadores */}
-        <View style={styles.mapContainer}>
-          <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: -16.3988031,
-              longitude: -71.5369606,
-              latitudeDelta: 0.01,
-              longitudeDelta: 0.01,
-            }}
-          >
-            {routePoints.map((point) => (
-              <Marker
-                key={point.id}
-                coordinate={{ latitude: point.latitude, longitude: point.longitude }}
-                title={point.title}
-              />
-            ))}
-            <Polyline
-              coordinates={routePoints.map((point) => ({
-                latitude: point.latitude,
-                longitude: point.longitude,
-              }))}
-              strokeColor="#8FD14F" // Color de la línea
-              strokeWidth={3}
-            />
-          </MapView>
-        </View>
+            {/* Mapa con ruta y marcadores */}
+            <View style={styles.mapContainer}>
+              <MapView
+                style={styles.map}
+                initialRegion={{
+                  latitude: -16.3988031,
+                  longitude: -71.5369606,
+                  latitudeDelta: 0.01,
+                  longitudeDelta: 0.01,
+                }}
+              >
+                {routePoints.map((point) => (
+                  <Marker
+                    key={point.id}
+                    coordinate={{ latitude: point.latitude, longitude: point.longitude }}
+                    title={point.title}
+                  />
+                ))}
+                <Polyline
+                  coordinates={routePoints.map((point) => ({
+                    latitude: point.latitude,
+                    longitude: point.longitude,
+                  }))}
+                  strokeColor="#8FD14F"
+                  strokeWidth={3}
+                />
+              </MapView>
+            </View>
 
-        {/* Creator and Like Section */}
-        <View style={styles.infoContainer}>
-          <View style={styles.creatorContainer}>
-            <Ionicons name="person" size={16} color="#2e2e50" />
-            <Text style={styles.creatorText}>Cesar Huayta Callisaya</Text>
-          </View>
-          <View style={styles.likeContainer}>
-            <Text style={styles.likeText}>¿Te gustó?</Text>
-            <TouchableOpacity style={styles.likeButton} onPress={() => console.log('Liked!')}>
-              <Ionicons name="thumbs-up" size={20} color="#8FD14F" />
-              <Text style={styles.likeCount}>313</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* Request Guide Button Section */}
-        <View style={styles.requestGuideContainer}>
-          <TouchableOpacity style={styles.requestGuideButton} onPress={() => console.log('Solicitar guía turístico')}>
-            <Text style={styles.requestGuideText}>Solicitar guía turístico</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Description Section */}
-        <View style={styles.descriptionContainer}>
-          <Text style={styles.sectionTitle}>Descripción</Text>
-          <Text style={styles.descriptionText}>Descubre los lugares más emblemáticos de Arequipa en esta ruta llena de historia y cultura. Visita la Plaza de Armas, el Monasterio de Santa Catalina y otros puntos de interés que te sumergirán en la esencia de la ciudad.</Text>
-        </View>
-
-        {/* Recommended Routes */}
-        <Text style={styles.sectionTitle}>Rutas Recomendadas</Text>
-        <FlatList
-          horizontal
-          data={recommendedRoutes}
-          renderItem={({ item }) => (
-            <TouchableOpacity style={styles.routeItem} onPress={() => handlePress(item.name)}>
-              <Ionicons name={item.icon} size={16} color="#2e2e50" />
-              <Text style={styles.routeText}>{item.name}</Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item.id}
-          showsHorizontalScrollIndicator={false}
-        />
-
-        {/* Comments Section */}
-        <Text style={styles.sectionTitle}>Comentarios</Text>
-        <FlatList
-          data={comments}
-          renderItem={({ item }) => (
-            <View style={styles.commentItem}>
-              <View style={styles.commentContent}>
-                <Text style={styles.userName}>{item.userName}</Text>
-                <Text style={styles.userSince}>{item.userSince}</Text>
-                <Text style={styles.postedAgo}>{item.postedAgo}</Text>
-                <Text style={styles.commentText}>{item.commentText}</Text>
+            
+            <View style={styles.infoContainer}>
+              <View style={styles.creatorContainer}>
+                <Ionicons name="person" size={16} color="#2e2e50" />
+                <Text style={styles.creatorText}>Cesar Huayta Callisaya</Text>
+              </View>
+              <View style={styles.likeContainer}>
+                <Text style={styles.likeText}>¿Te gustó?</Text>
+                <TouchableOpacity style={styles.likeButton} onPress={() => console.log('Liked!')}>
+                  <Ionicons name="thumbs-up" size={20} color="#8FD14F" />
+                  <Text style={styles.likeCount}>313</Text>
+                </TouchableOpacity>
               </View>
             </View>
-          )}
-          keyExtractor={(item) => item.id}
-          showsVerticalScrollIndicator={false}
-        />
-      </ScrollView>
+
+            {/* Request Guide Button Section */}
+            <View style={styles.requestGuideContainer}>
+              <TouchableOpacity style={styles.requestGuideButton} onPress={() => console.log('Solicitar guía turístico')}>
+                <Text style={styles.requestGuideText}>Solicitar guía turístico</Text>
+              </TouchableOpacity>
+            </View>
+
+            {/* Description Section */}
+            <View style={styles.descriptionContainer}>
+              <Text style={styles.sectionTitle}>Descripción</Text>
+              <Text style={styles.descriptionText}>
+                Descubre los lugares más emblemáticos de Arequipa en esta ruta llena de historia y cultura. Visita la Plaza de Armas,
+                el Monasterio de Santa Catalina y otros puntos de interés que te sumergirán en la esencia de la ciudad.
+              </Text>
+            </View>
+
+            {/* Recommended Routes */}
+            <Text style={styles.sectionTitle}>Rutas Recomendadas</Text>
+            <FlatList
+              horizontal
+              data={recommendedRoutes}
+              renderItem={({ item }) => (
+                <TouchableOpacity style={styles.routeItem} onPress={() => handlePress(item.name)}>
+                  <Ionicons name={item.icon} size={16} color="#2e2e50" />
+                  <Text style={styles.routeText}>{item.name}</Text>
+                </TouchableOpacity>
+              )}
+              keyExtractor={(item) => item.id}
+              showsHorizontalScrollIndicator={false}
+            />
+
+            
+            <Text style={styles.sectionTitle}>Comentarios</Text>
+          </>
+        )}
+        renderItem={({ item }) => (
+          <View style={styles.commentItem}>
+            <View style={styles.commentContent}>
+              <Text style={styles.userName}>{item.userName}</Text>
+              <Text style={styles.userSince}>{item.userSince}</Text>
+              <Text style={styles.postedAgo}>{item.postedAgo}</Text>
+              <Text style={styles.commentText}>{item.commentText}</Text>
+            </View>
+          </View>
+        )}
+        keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
+      />
     </SafeAreaView>
   );
 };

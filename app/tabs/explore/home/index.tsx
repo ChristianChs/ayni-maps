@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    backgroundColor: 'white', // puedes configurar un fondo si es necesario
+    backgroundColor: 'white', 
   },
 });
 
