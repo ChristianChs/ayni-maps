@@ -21,7 +21,7 @@ const TabsLayout = () => {
       />
       <Tabs.Screen
         
-        name="explore/home/index"
+        name="explore"
         options={{
           title: 'Explorar',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="search" color={color} />,
@@ -41,13 +41,13 @@ const TabsLayout = () => {
           tabBarIcon: ({ color }) => <Ionicons size={28} name="person" color={color} />,
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="(stack)"
         options={{
           title: 'Stack',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
         }}
-      />
+      /> */}
     </Tabs>
   )
 }
