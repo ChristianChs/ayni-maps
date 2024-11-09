@@ -57,7 +57,7 @@ const RouteExploreScreen = () => {
           <Text style={styles.navbarText}>Explora Arequipa</Text>
         </View>
 
-        {/* Mapa con ruta y marcadores */}
+      
         <View style={styles.mapContainer}>
           <MapView
             style={styles.map}
@@ -80,10 +80,13 @@ const RouteExploreScreen = () => {
                 latitude: point.latitude,
                 longitude: point.longitude,
               }))}
-              strokeColor="#8FD14F" // Color de la línea
+              strokeColor="#8FD14F" 
               strokeWidth={3}
             />
           </MapView>
+          <TouchableOpacity style={styles.exploreButton} onPress={handleConfirmPress}>
+            <Text style={styles.exploreButtonText}>Explora los lugares</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.infoContainer}>
@@ -122,7 +125,9 @@ const RouteExploreScreen = () => {
             <TouchableOpacity style={styles.userRouteItem} onPress={handleConfirmPress}>
               <Image source={item.image} style={styles.userRouteImage} />
               <Text style={styles.distanceText}>{item.distance}</Text>
-              <Text style={styles.userRouteText}>{item.name}</Text>
+              <Text style={styles.userRouteText} numberOfLines={2} ellipsizeMode="tail">
+                {item.name}
+              </Text>
             </TouchableOpacity>
           )}
           keyExtractor={(item) => item.id}
@@ -155,6 +160,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   mapContainer: {
+    position: 'relative',
     margin: 20,
     borderRadius: 15,
     overflow: 'hidden',
@@ -163,6 +169,20 @@ const styles = StyleSheet.create({
   map: {
     width: '100%',
     height: '100%',
+  },
+  exploreButton: {
+    position: 'absolute',
+    top: 15,
+    left: 15,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+  },
+  exploreButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#333',
   },
   infoContainer: {
     flexDirection: 'row',
@@ -257,9 +277,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#333',
     textAlign: 'center',
-    maxWidth: 100, // Asegúrate de que el ancho sea adecuado para contener dos líneas de texto
+    maxWidth: 100,
   },
-  
   safeArea: {
     flex: 1,
     backgroundColor: 'white', 
