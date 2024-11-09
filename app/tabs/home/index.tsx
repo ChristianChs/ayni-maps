@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { Link, router } from 'expo-router';
 
 type Ruta = {
   id: string;
@@ -26,16 +27,18 @@ const HomeScreen = () => {
   };
 
   const renderRuta = ({ item }: { item: Ruta }) => (
-    <TouchableOpacity style={styles.rutaContainer} onPress={() => console.log(`Clicked on ${item.nombre}`)}>
-      <View style={styles.imageContainer}>
-        <Image source={require('../../../assets/images/mapa.png')} style={styles.mapThumbnail} />
-        {item.favorita && (
-          <FontAwesome name="heart" size={20} color="#8FD14F" style={styles.favoriteIcon} />
-        )}
-      </View>
-      <Text style={styles.rutaNombre}>{item.nombre}</Text>
-      <Text style={styles.rutaUbicacion}>{item.ubicacion}</Text>
-    </TouchableOpacity>
+<Link href={`/tabs/home/${item.id}`} asChild>
+  <TouchableOpacity style={styles.rutaContainer}>
+    <View style={styles.imageContainer}>
+      <Image source={require('../../../assets/images/mapa.png')} style={styles.mapThumbnail} />
+      {item.favorita && (
+        <FontAwesome name="heart" size={20} color="#8FD14F" style={styles.favoriteIcon} />
+      )}
+    </View>
+    <Text style={styles.rutaNombre}>{item.nombre}</Text>
+    <Text style={styles.rutaUbicacion}>{item.ubicacion}</Text>
+  </TouchableOpacity>
+</Link>
   );
 
   return (
