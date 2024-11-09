@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Cities = {
   id: string;
@@ -60,36 +61,38 @@ const DestinationScreen = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>¿Cuál es tu próximo destino?</Text>
-      <View style={styles.searchContainer}>
-        <TouchableOpacity onPress={handleSearchPress}>
-          <Ionicons name="search" size={18} color="#707070" />
-        </TouchableOpacity>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Escriba la ciudad"
-          value={search}
-          onChangeText={setSearch}
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.title}>¿Cuál es tu próximo destino?</Text>
+        <View style={styles.searchContainer}>
+          <TouchableOpacity onPress={handleSearchPress}>
+            <Ionicons name="search" size={18} color="#707070" />
+          </TouchableOpacity>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Escriba la ciudad"
+            value={search}
+            onChangeText={setSearch}
+          />
+        </View>
+        <FlatList
+          data={cities}
+          renderItem={renderCity}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.cityList}
         />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.confirmButton} onPress={handleConfirmPress}>
+            <Ionicons name="checkmark-done-outline" size={18} color="#fff" />
+            <Text style={styles.buttonText}>CONFIRMAR</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.skipButton} onPress={handleConfirmPress}>
+            <Ionicons name="play-forward" size={18} color="#fff" />
+            <Text style={styles.buttonText}>OMITIR</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <FlatList
-        data={cities}
-        renderItem={renderCity}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.cityList}
-      />
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.confirmButton} onPress={handleConfirmPress}>
-          <Ionicons name="checkmark-done-outline" size={18} color="#fff" />
-          <Text style={styles.buttonText}>CONFIRMAR</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.skipButton} onPress={handleConfirmPress}>
-          <Ionicons name="play-forward" size={18} color="#fff" />
-          <Text style={styles.buttonText}>OMITIR</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -163,6 +166,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginLeft: 5,
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'white', // puedes configurar un fondo si es necesario
   },
 });
 

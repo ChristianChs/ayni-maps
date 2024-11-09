@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type RecommendedRoute = {
   id: string;
@@ -36,83 +37,85 @@ const RouteDescriptionScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      {/* Navbar */}
-      <View style={styles.navbar}>
-        <Ionicons name="map" size={24} color="#8FD14F" />
-        <Text style={styles.navbarText}>Ruta de acceso</Text>
-      </View>
-
-      {/* Explore Places Image */}
-      <TouchableOpacity style={styles.mapContainer} onPress={() => handlePress('Explora los lugares')}>
-        <Image source={require('../../../../assets/images/mapaExplorar.jpg')} style={styles.mapImage} />
-        <View style={styles.mapTitleContainer}>
-          <Text style={styles.mapTitle}>Explora los lugares</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView style={styles.container}>
+        {/* Navbar */}
+        <View style={styles.navbar}>
+          <Ionicons name="map" size={24} color="#8FD14F" />
+          <Text style={styles.navbarText}>Ruta de acceso</Text>
         </View>
-      </TouchableOpacity>
 
-      {/* Creator and Like Section */}
-      <View style={styles.infoContainer}>
-        <View style={styles.creatorContainer}>
-          <Ionicons name="person" size={16} color="#2e2e50" />
-          <Text style={styles.creatorText}>Cesar Huayta Callisaya</Text>
-        </View>
-        <View style={styles.likeContainer}>
-          <Text style={styles.likeText}>¿Te gustó?</Text>
-          <TouchableOpacity style={styles.likeButton} onPress={() => console.log('Liked!')}>
-            <Ionicons name="thumbs-up" size={20} color="#8FD14F" />
-            <Text style={styles.likeCount}>313</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {/* Request Guide Button Section */}
-      <View style={styles.requestGuideContainer}>
-        <TouchableOpacity style={styles.requestGuideButton} onPress={() => console.log('Solicitar guía turístico')}>
-          <Text style={styles.requestGuideText}>Solicitar guía turístico</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Description Section */}
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.sectionTitle}>Descripción</Text>
-        <Text style={styles.descriptionText}>Este es un breve resumen sobre el recorrido y las experiencias que puedes tener en esta ruta. Descubre lugares asombrosos y sumérgete en la cultura local.</Text>
-      </View>
-
-      {/* Recommended Routes */}
-      <Text style={styles.sectionTitle}>Rutas Recomendadas</Text>
-      <FlatList
-        horizontal
-        data={recommendedRoutes}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.routeItem} onPress={() => handlePress(item.name)}>
-            <Ionicons name={item.icon} size={16} color="#2e2e50" />
-            <Text style={styles.routeText}>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item) => item.id}
-        showsHorizontalScrollIndicator={false}
-      />
-
-      {/* Comments Section */}
-      <Text style={styles.sectionTitle}>Comentarios</Text>
-      <FlatList
-        data={comments}
-        renderItem={({ item }) => (
-          <View style={styles.commentItem}>
-            <Image source={{ uri: 'https://via.placeholder.com/100' }} style={styles.profileImage} />
-            <View style={styles.commentContent}>
-              <Text style={styles.userName}>{item.userName}</Text>
-              <Text style={styles.userSince}>{item.userSince}</Text>
-              <Text style={styles.postedAgo}>{item.postedAgo}</Text>
-              <Text style={styles.commentText}>{item.commentText}</Text>
-            </View>
+        {/* Explore Places Image */}
+        <TouchableOpacity style={styles.mapContainer} onPress={() => handlePress('Explora los lugares')}>
+          <Image source={require('../../../../assets/images/mapaExplorar.jpg')} style={styles.mapImage} />
+          <View style={styles.mapTitleContainer}>
+            <Text style={styles.mapTitle}>Explora los lugares</Text>
           </View>
-        )}
-        keyExtractor={(item) => item.id}
-        showsVerticalScrollIndicator={false}
-      />
-    </ScrollView>
+        </TouchableOpacity>
+
+        {/* Creator and Like Section */}
+        <View style={styles.infoContainer}>
+          <View style={styles.creatorContainer}>
+            <Ionicons name="person" size={16} color="#2e2e50" />
+            <Text style={styles.creatorText}>Cesar Huayta Callisaya</Text>
+          </View>
+          <View style={styles.likeContainer}>
+            <Text style={styles.likeText}>¿Te gustó?</Text>
+            <TouchableOpacity style={styles.likeButton} onPress={() => console.log('Liked!')}>
+              <Ionicons name="thumbs-up" size={20} color="#8FD14F" />
+              <Text style={styles.likeCount}>313</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Request Guide Button Section */}
+        <View style={styles.requestGuideContainer}>
+          <TouchableOpacity style={styles.requestGuideButton} onPress={() => console.log('Solicitar guía turístico')}>
+            <Text style={styles.requestGuideText}>Solicitar guía turístico</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Description Section */}
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.sectionTitle}>Descripción</Text>
+          <Text style={styles.descriptionText}>Este es un breve resumen sobre el recorrido y las experiencias que puedes tener en esta ruta. Descubre lugares asombrosos y sumérgete en la cultura local.</Text>
+        </View>
+
+        {/* Recommended Routes */}
+        <Text style={styles.sectionTitle}>Rutas Recomendadas</Text>
+        <FlatList
+          horizontal
+          data={recommendedRoutes}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.routeItem} onPress={() => handlePress(item.name)}>
+              <Ionicons name={item.icon} size={16} color="#2e2e50" />
+              <Text style={styles.routeText}>{item.name}</Text>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item) => item.id}
+          showsHorizontalScrollIndicator={false}
+        />
+
+        {/* Comments Section */}
+        <Text style={styles.sectionTitle}>Comentarios</Text>
+        <FlatList
+          data={comments}
+          renderItem={({ item }) => (
+            <View style={styles.commentItem}>
+              <Image source={{ uri: 'https://via.placeholder.com/100' }} style={styles.profileImage} />
+              <View style={styles.commentContent}>
+                <Text style={styles.userName}>{item.userName}</Text>
+                <Text style={styles.userSince}>{item.userSince}</Text>
+                <Text style={styles.postedAgo}>{item.postedAgo}</Text>
+                <Text style={styles.commentText}>{item.commentText}</Text>
+              </View>
+            </View>
+          )}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+        />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -294,6 +297,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#555',
     marginTop: 5,
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'white',
   },
 });
 

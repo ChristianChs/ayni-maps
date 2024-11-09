@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type RecommendedRoute = {
   id: string;
@@ -40,6 +41,7 @@ const RouteExploreScreen = () => {
   };
 
   return (
+    <SafeAreaView style={styles.safeArea}>
     <ScrollView style={styles.container}>
       <View style={styles.navbar}>
         <Ionicons name="map" size={24} color="#8FD14F" />
@@ -96,6 +98,7 @@ const RouteExploreScreen = () => {
         showsHorizontalScrollIndicator={false}
       />
     </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -237,6 +240,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#333',
     textAlign: 'center',
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'white', 
   },
 });
 
