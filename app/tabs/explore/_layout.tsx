@@ -19,15 +19,10 @@ const StackLayout = () => {
         }}
       />
       <Stack.Screen
-        name='login/index'
-        options={{
-          title: 'Login',
-        }}
-      />
-      <Stack.Screen
-        name='routes/index'
+        name='route/index'
         options={{
           title: 'Rutas',
+          animation: 'default'
         }}
       />
     </Stack>

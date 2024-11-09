@@ -17,7 +17,6 @@ const HomeScreen = () => {
             </View>
             <View className='px-10'>
                 <CustomButton
-                    color='green'
                     onPress={() => router.push('/tabs/(stack)/routes')}
                 >
                     Rutas

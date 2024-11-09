@@ -3,7 +3,7 @@ import React from 'react'
 
 interface Props extends PressableProps {
     children: string;
-    color:string;
+    color?:string;
 }
 
 const CustomButton = ({ children, color,  onPress }: Props) => {

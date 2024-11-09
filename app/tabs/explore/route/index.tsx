@@ -25,9 +25,9 @@ const RouteExploreScreen = () => {
   ];
 
   const userRoutes: UserRoute[] = [
-    { id: '1', name: 'Machu Picchu', distance: 'A 50km', image: require('../../../assets/images/rutasExplorar.png') },
-    { id: '2', name: 'Centro de Cusco', distance: 'A 2km', image: require('../../../assets/images/rutasExplorar.png') },
-    { id: '3', name: 'Fiestas Cusco', distance: 'A 3km', image: require('../../../assets/images/rutasExplorar.png') },
+    { id: '1', name: 'Machu Picchu', distance: 'A 50km', image: require('../../../../assets/images/rutasExplorar.png') },
+    { id: '2', name: 'Centro de Cusco', distance: 'A 2km', image: require('../../../../assets/images/rutasExplorar.png') },
+    { id: '3', name: 'Fiestas Cusco', distance: 'A 3km', image: require('../../../../assets/images/rutasExplorar.png') },
   ];
 
   const handlePress = (routeName: string) => {
@@ -44,25 +44,27 @@ const RouteExploreScreen = () => {
 
       {/* Explore Places Image */}
       <TouchableOpacity style={styles.mapContainer} onPress={() => handlePress('Explora los lugares')}>
-        <Image source={require('../../../assets/images/mapaExplorar.jpg')} style={styles.mapImage} />
+        <Image source={require('../../../../assets/images/mapaExplorar.jpg')} style={styles.mapImage} />
         <View style={styles.mapTitleContainer}>
           <Text style={styles.mapTitle}>Explora los lugares</Text>
         </View>
       </TouchableOpacity>
 
-      {/* Creator and Recommended Section */}
+      {/* Creator and Reactions Section */}
       <View style={styles.infoContainer}>
         <View style={styles.creatorContainer}>
           <Ionicons name="person" size={16} color="#2e2e50" />
           <Text style={styles.creatorText}>Cesar Huayta Callisaya</Text>
         </View>
-        <View style={styles.recommendedContainer}>
-          <Text style={styles.recommendedText}>Ruta recomendada</Text>
-          <View style={styles.starsContainer}>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <Ionicons key={index} name="star" size={16} color="#8FD14F" />
-            ))}
-          </View>
+        <View style={styles.reactionsContainer}>
+          <TouchableOpacity style={styles.reactionButton} onPress={() => console.log("Liked!")}>
+            <Ionicons name="thumbs-up-outline" size={16} color="#8FD14F" />
+            <Text style={styles.reactionText}>6,1 K</Text>
+          </TouchableOpacity>
+          <View style={styles.divider} />
+          <TouchableOpacity style={styles.reactionButton} onPress={() => console.log("Disliked!")}>
+            <Ionicons name="thumbs-down-outline" size={16} color="#8FD14F" />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 10, // Ajuste en padding horizontal
+    paddingHorizontal: 10,
     paddingVertical: 10,
     backgroundColor: '#fff',
     borderRadius: 8,
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 10,
     elevation: 1,
-    marginHorizontal: 20, // Separación lateral de los bordes
+    marginHorizontal: 20,
     marginBottom: 20,
   },
   creatorContainer: {
@@ -168,17 +170,34 @@ const styles = StyleSheet.create({
     color: '#555',
     marginLeft: 5,
   },
-  recommendedContainer: {
-    alignItems: 'center',
-  },
-  recommendedText: {
-    fontSize: 14,
-    color: '#555',
-    marginBottom: 5,
-  },
-  starsContainer: {
+  reactionsContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    backgroundColor: '#E6F4EA', // Fondo claro que combina con tu estilo
+    borderRadius: 20, // Bordes redondeados para el efecto pill
+    marginHorizontal: 20,
+    marginBottom: 20,
   },
+  reactionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
+  reactionText: {
+    fontSize: 14,
+    color: '#8FD14F', // Verde característico para el texto
+    marginLeft: 5,
+    fontWeight: 'bold',
+  },
+  divider: {
+    width: 1,
+    height: 20,
+    backgroundColor: '#ccc', // Un gris suave para el divisor
+    marginHorizontal: 10,
+  },  
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',

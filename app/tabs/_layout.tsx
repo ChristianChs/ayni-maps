@@ -7,7 +7,7 @@ const TabsLayout = () => {
   return (
     <Tabs screenOptions={{ 
       tabBarActiveTintColor: 'indigo', 
-      // headerShown:false,
+      headerShown:false,
       tabBarStyle:{
         backgroundColor:'white'
       }
@@ -21,7 +21,7 @@ const TabsLayout = () => {
       />
       <Tabs.Screen
         
-        name="explore/index"
+        name="explore/home/index"
         options={{
           title: 'Explorar',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
