@@ -47,7 +47,7 @@ const HomeScreen = () => {
   );
 
   return (
-    
+    <SafeAreaView style={styles.safeArea}>
     <View style={styles.container}>
       <View style={styles.navbar}>
         <TouchableOpacity
@@ -77,6 +77,7 @@ const HomeScreen = () => {
       </TouchableOpacity>
       </Link>
     </View>
+    </SafeAreaView>
   );
 };
 
@@ -175,7 +176,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
-  
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'white', 
+  },
 });
 
 export default HomeScreen;

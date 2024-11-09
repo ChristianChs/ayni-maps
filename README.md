@@ -1,50 +1,9 @@
-# Welcome to your Expo app 👋
+# Sobre el proyecto
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este proyecto surge como respuesta al reto del **Turismo Inteligente**, con la meta de digitalizar y mejorar la experiencia turística mediante una aplicación que ofrece **rutas personalizadas, sostenibles y memorables**. Inspirados por la experiencia de explorar Cusco sin guía y notar la falta de recursos confiables para diseñar rutas originales, nos propusimos crear una solución que incentive a los viajeros a descubrir lugares menos conocidos, ofreciendo una experiencia equilibrada y enriquecedora. Descubrimos que los turistas modernos buscan vivencias auténticas e interactivas, mientras que la industria necesita distribuir mejor a los visitantes para evitar la saturación de sitios populares y preservar su valor cultural. Además, la falta de recomendaciones confiables en tiempo real limita el descubrimiento de aspectos genuinos de los destinos, una brecha que esta aplicación busca cerrar.
 
-## Get started
+Para abordar esta necesidad, desarrollamos una aplicación móvil gamificada que ofrece rutas temáticas personalizadas, abarcando aspectos culturales, gastronómicos, de naturaleza, historia y aventura. Cada ruta está diseñada para ajustarse a los intereses del usuario, presentando objetivos específicos y puntos de interés únicos que fomentan una experiencia de viaje interactiva y motivadora. Los usuarios pueden ganar insignias y recompensas digitales al completar recorridos o alcanzar ciertos hitos, incentivando así la exploración de destinos menos concurridos y contribuyendo a la **descentralización del turismo**. Además, los viajeros pueden dejar recomendaciones y comentarios en cada punto destacado, creando una red de conocimiento compartido y confiable, que a su vez fortalece la comunidad entre viajeros y permite sugerencias de rutas según las preferencias y experiencias previas de cada usuario.
 
-1. Install dependencies
+El proyecto está dirigido a turistas de todas las edades interesados en explorar destinos menos conocidos mediante **experiencias personalizadas**, al tiempo que beneficia a comunidades locales y pequeños negocios, atrayendo visitantes a áreas menos populares y promoviendo una distribución de ingresos más equitativa. Para construir la aplicación, usamos React Native o Flutter para desarrollar una experiencia multiplataforma accesible tanto en iOS como en Android, mientras que el backend se basa en Node.js y Express.js para ofrecer una lógica escalable y manejar datos en tiempo real. MongoDB permite almacenar información dinámica, como comentarios y recomendaciones, de manera flexible y eficiente. Implementamos herramientas de **gamificación** para facilitar la creación de insignias y clasificaciones, y el sistema colaborativo de recomendaciones enriquece la experiencia con información confiable y personalizada.
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Los desafíos que enfrentamos incluyeron incentivar a los viajeros a explorar rutas alternativas y asegurar que las recomendaciones fueran útiles y actualizadas. A través de la tecnología y un enfoque centrado en el usuario, el proyecto logra transformar la experiencia turística, promoviendo un **turismo inclusivo, sostenible y enriquecedor**, que conecta a los viajeros con la esencia de cada destino y apoya el desarrollo de las comunidades locales.
