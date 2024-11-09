@@ -31,10 +31,10 @@ const HomeScreen = () => {
   };
 
   const renderRuta = ({ item }: { item: Ruta }) => (
-<Link href={`/tabs/home/${item.id}`} asChild>
+<Link href={`/tabs/home/routmap/${item.id}`} asChild>
   <TouchableOpacity style={styles.rutaContainer}>
     <View style={styles.imageContainer}>
-      <Image source={require('../../../assets/images/mapa.png')} style={styles.mapThumbnail} />
+      <Image source={require('../../../../assets/images/mapa.png')} style={styles.mapThumbnail} />
       {item.favorita && (
         <FontAwesome name="heart" size={20} color="#8FD14F" style={styles.favoriteIcon} />
       )}
