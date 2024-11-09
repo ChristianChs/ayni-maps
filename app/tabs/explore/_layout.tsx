@@ -25,6 +25,13 @@ const StackLayout = () => {
           animation: 'default'
         }}
       />
+      <Stack.Screen
+        name='description/index'
+        options={{
+          title: 'Rutas',
+          animation: 'default'
+        }}
+      />
     </Stack>
   )
 }

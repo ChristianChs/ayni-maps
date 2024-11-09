@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router'
 
 type RecommendedRoute = {
   id: string;
@@ -9,14 +8,15 @@ type RecommendedRoute = {
   icon: keyof typeof Ionicons.glyphMap;
 };
 
-type UserRoute = {
+type Comment = {
   id: string;
-  name: string;
-  distance: string;
-  image: any;
+  userName: string;
+  userSince: string;
+  postedAgo: string;
+  commentText: string;
 };
 
-const RouteExploreScreen = () => {
+const RouteDescriptionScreen = () => {
   const recommendedRoutes: RecommendedRoute[] = [
     { id: '1', name: 'Plaza Mayor', icon: 'business' },
     { id: '2', name: '200 casas', icon: 'business' },
@@ -25,34 +25,33 @@ const RouteExploreScreen = () => {
     { id: '5', name: '200 casas', icon: 'business' },
   ];
 
-  const userRoutes: UserRoute[] = [
-    { id: '1', name: 'Machu Picchu', distance: 'A 50km', image: require('../../../../assets/images/rutasExplorar.png') },
-    { id: '2', name: 'Centro de Cusco', distance: 'A 2km', image: require('../../../../assets/images/rutasExplorar.png') },
-    { id: '3', name: 'Fiestas Cusco', distance: 'A 3km', image: require('../../../../assets/images/rutasExplorar.png') },
+  const comments: Comment[] = [
+    { id: '1', userName: 'Niel', userSince: '3 años en la app', postedAgo: 'Hace 2 semanas', commentText: 'Bonito lugar, muy atentos en todo' },
+    { id: '2', userName: 'Laura', userSince: '1 año en la app', postedAgo: 'Hace 1 mes', commentText: 'Una experiencia inolvidable, recomendado.' },
+    { id: '3', userName: 'Carlos', userSince: '2 años en la app', postedAgo: 'Hace 3 semanas', commentText: 'Me gustó mucho el ambiente y la atención.' },
   ];
 
   const handlePress = (routeName: string) => {
     console.log(`Pressed: ${routeName}`);
   };
 
-  const handleConfirmPress = () => {
-    router.push('/tabs/explore/description/');
-  };
-
   return (
     <ScrollView style={styles.container}>
+      {/* Navbar */}
       <View style={styles.navbar}>
         <Ionicons name="map" size={24} color="#8FD14F" />
         <Text style={styles.navbarText}>Ruta de acceso</Text>
       </View>
 
-      <TouchableOpacity style={styles.mapContainer} onPress={handleConfirmPress}>
+      {/* Explore Places Image */}
+      <TouchableOpacity style={styles.mapContainer} onPress={() => handlePress('Explora los lugares')}>
         <Image source={require('../../../../assets/images/mapaExplorar.jpg')} style={styles.mapImage} />
         <View style={styles.mapTitleContainer}>
           <Text style={styles.mapTitle}>Explora los lugares</Text>
         </View>
       </TouchableOpacity>
 
+      {/* Creator and Like Section */}
       <View style={styles.infoContainer}>
         <View style={styles.creatorContainer}>
           <Ionicons name="person" size={16} color="#2e2e50" />
@@ -67,6 +66,20 @@ const RouteExploreScreen = () => {
         </View>
       </View>
 
+      {/* Request Guide Button Section */}
+      <View style={styles.requestGuideContainer}>
+        <TouchableOpacity style={styles.requestGuideButton} onPress={() => console.log('Solicitar guía turístico')}>
+          <Text style={styles.requestGuideText}>Solicitar guía turístico</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Description Section */}
+      <View style={styles.descriptionContainer}>
+        <Text style={styles.sectionTitle}>Descripción</Text>
+        <Text style={styles.descriptionText}>Este es un breve resumen sobre el recorrido y las experiencias que puedes tener en esta ruta. Descubre lugares asombrosos y sumérgete en la cultura local.</Text>
+      </View>
+
+      {/* Recommended Routes */}
       <Text style={styles.sectionTitle}>Rutas Recomendadas</Text>
       <FlatList
         horizontal
@@ -81,19 +94,23 @@ const RouteExploreScreen = () => {
         showsHorizontalScrollIndicator={false}
       />
 
-      <Text style={styles.sectionTitle}>Explorar rutas por usuarios</Text>
+      {/* Comments Section */}
+      <Text style={styles.sectionTitle}>Comentarios</Text>
       <FlatList
-        horizontal
-        data={userRoutes}
+        data={comments}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.userRouteItem} onPress={handleConfirmPress}>
-            <Image source={item.image} style={styles.userRouteImage} />
-            <Text style={styles.distanceText}>{item.distance}</Text>
-            <Text style={styles.userRouteText}>{item.name}</Text>
-          </TouchableOpacity>
+          <View style={styles.commentItem}>
+            <Image source={{ uri: 'https://via.placeholder.com/100' }} style={styles.profileImage} />
+            <View style={styles.commentContent}>
+              <Text style={styles.userName}>{item.userName}</Text>
+              <Text style={styles.userSince}>{item.userSince}</Text>
+              <Text style={styles.postedAgo}>{item.postedAgo}</Text>
+              <Text style={styles.commentText}>{item.commentText}</Text>
+            </View>
+          </View>
         )}
         keyExtractor={(item) => item.id}
-        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
       />
     </ScrollView>
   );
@@ -147,6 +164,7 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 10,
     backgroundColor: '#fff',
@@ -156,7 +174,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 1,
     marginHorizontal: 20,
-    marginBottom: 20,
+    marginBottom: 10, // Adjusted margin to separate from the request guide button section
   },
   creatorContainer: {
     flexDirection: 'row',
@@ -188,12 +206,35 @@ const styles = StyleSheet.create({
     color: '#555',
     marginLeft: 5,
   },
+  requestGuideContainer: {
+    alignItems: 'center',
+    marginVertical: 5,
+  },
+  requestGuideButton: {
+    backgroundColor: '#8FD14F',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+  },
+  requestGuideText: {
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
     marginBottom: 15,
     marginHorizontal: 20,
+  },
+  descriptionContainer: {
+    marginBottom: 20,
+  },
+  descriptionText: {
+    fontSize: 14,
+    marginHorizontal: 20,
+    color: '#555',
   },
   routeItem: {
     flexDirection: 'row',
@@ -211,33 +252,48 @@ const styles = StyleSheet.create({
     color: '#333',
     marginLeft: 8,
   },
-  userRouteItem: {
-    alignItems: 'center',
-    padding: 8,
+  commentItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    padding: 10,
+    marginHorizontal: 20,
+    marginBottom: 20,
     backgroundColor: '#fff',
-    borderRadius: 10,
+    borderRadius: 8,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 10,
-    elevation: 3,
-    marginHorizontal: 8,
-    marginBottom: 20,
+    elevation: 1,
   },
-  userRouteImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
+  profileImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginBottom: 10,
+    backgroundColor: '#d9d9d9',
   },
-  distanceText: {
-    fontSize: 12,
-    color: '#8FD14F',
-    marginVertical: 5,
+  commentContent: {
+    flex: 1,
   },
-  userRouteText: {
-    fontSize: 14,
+  userName: {
+    fontSize: 16,
+    fontWeight: 'bold',
     color: '#333',
-    textAlign: 'center',
+  },
+  userSince: {
+    fontSize: 12,
+    color: '#777',
+  },
+  postedAgo: {
+    fontSize: 12,
+    color: '#777',
+    marginVertical: 2,
+  },
+  commentText: {
+    fontSize: 14,
+    color: '#555',
+    marginTop: 5,
   },
 });
 
-export default RouteExploreScreen;
+export default RouteDescriptionScreen;
