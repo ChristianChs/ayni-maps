@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, ScrollView, Image, ImageSourcePropType, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface Achievement {
   id: string;
@@ -94,6 +95,7 @@ const AchievementsScreen = () => {
   );
 
   return (
+    <SafeAreaView style={styles.safeArea}>
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <View style={styles.header}>
         <Ionicons name="trophy" size={24} color="#8FD14F" />
@@ -186,6 +188,7 @@ const AchievementsScreen = () => {
         </ScrollView>
       </View>
     </View>
+    </SafeAreaView>
   );
 };
 
@@ -348,6 +351,10 @@ const styles = StyleSheet.create({
   closeButtonText: {
     color: '#fff',
     fontWeight: 'bold',
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'white', // puedes configurar un fondo si es necesario
   },
 });
 
