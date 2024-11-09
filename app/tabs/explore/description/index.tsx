@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import MapView, { Marker, Polyline } from 'react-native-maps';
 
 type RecommendedRoute = {
   id: string;
@@ -19,17 +20,25 @@ type Comment = {
 
 const RouteDescriptionScreen = () => {
   const recommendedRoutes: RecommendedRoute[] = [
-    { id: '1', name: 'Plaza Mayor', icon: 'business' },
-    { id: '2', name: '200 casas', icon: 'business' },
-    { id: '3', name: 'Qorikancha', icon: 'business' },
-    { id: '4', name: 'Mercado de San Pedro', icon: 'business' },
-    { id: '5', name: '200 casas', icon: 'business' },
+    { id: '1', name: 'Plaza de Armas de Arequipa', icon: 'business' },
+    { id: '2', name: 'Monasterio de Santa Catalina', icon: 'business' },
+    { id: '3', name: 'Catedral de Arequipa', icon: 'business' },
+    { id: '4', name: 'Mirador de Yanahuara', icon: 'business' },
+    { id: '5', name: 'Museo Santuarios Andinos', icon: 'business' },
   ];
 
   const comments: Comment[] = [
-    { id: '1', userName: 'Niel', userSince: '3 años en la app', postedAgo: 'Hace 2 semanas', commentText: 'Bonito lugar, muy atentos en todo' },
-    { id: '2', userName: 'Laura', userSince: '1 año en la app', postedAgo: 'Hace 1 mes', commentText: 'Una experiencia inolvidable, recomendado.' },
-    { id: '3', userName: 'Carlos', userSince: '2 años en la app', postedAgo: 'Hace 3 semanas', commentText: 'Me gustó mucho el ambiente y la atención.' },
+    { id: '1', userName: 'Niel', userSince: '3 años en la app', postedAgo: 'Hace 2 semanas', commentText: 'Un lugar histórico y lleno de cultura.' },
+    { id: '2', userName: 'Laura', userSince: '1 año en la app', postedAgo: 'Hace 1 mes', commentText: 'Una experiencia inolvidable, especialmente el mirador.' },
+    { id: '3', userName: 'Carlos', userSince: '2 años en la app', postedAgo: 'Hace 3 semanas', commentText: 'El Monasterio de Santa Catalina es impresionante.' },
+  ];
+
+  const routePoints = [
+    { id: '1', latitude: -16.3988031, longitude: -71.5369606, title: "Plaza de Armas de Arequipa" },
+    { id: '2', latitude: -16.3991056, longitude: -71.5399013, title: "Monasterio de Santa Catalina" },
+    { id: '3', latitude: -16.3987028, longitude: -71.5372193, title: "Catedral de Arequipa" },
+    { id: '4', latitude: -16.3982476, longitude: -71.5312342, title: "Museo Santuarios Andinos" },
+    { id: '5', latitude: -16.3999352, longitude: -71.5360913, title: "Mirador de Yanahuara" },
   ];
 
   const handlePress = (routeName: string) => {
@@ -42,16 +51,37 @@ const RouteDescriptionScreen = () => {
         {/* Navbar */}
         <View style={styles.navbar}>
           <Ionicons name="map" size={24} color="#8FD14F" />
-          <Text style={styles.navbarText}>Ruta de acceso</Text>
+          <Text style={styles.navbarText}>Ruta de Arequipa</Text>
         </View>
 
-        {/* Explore Places Image */}
-        <TouchableOpacity style={styles.mapContainer} onPress={() => handlePress('Explora los lugares')}>
-          <Image source={require('../../../../assets/images/mapaExplorar.jpg')} style={styles.mapImage} />
-          <View style={styles.mapTitleContainer}>
-            <Text style={styles.mapTitle}>Explora los lugares</Text>
-          </View>
-        </TouchableOpacity>
+        {/* Mapa con ruta y marcadores */}
+        <View style={styles.mapContainer}>
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: -16.3988031,
+              longitude: -71.5369606,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
+            }}
+          >
+            {routePoints.map((point) => (
+              <Marker
+                key={point.id}
+                coordinate={{ latitude: point.latitude, longitude: point.longitude }}
+                title={point.title}
+              />
+            ))}
+            <Polyline
+              coordinates={routePoints.map((point) => ({
+                latitude: point.latitude,
+                longitude: point.longitude,
+              }))}
+              strokeColor="#8FD14F" // Color de la línea
+              strokeWidth={3}
+            />
+          </MapView>
+        </View>
 
         {/* Creator and Like Section */}
         <View style={styles.infoContainer}>
@@ -78,7 +108,7 @@ const RouteDescriptionScreen = () => {
         {/* Description Section */}
         <View style={styles.descriptionContainer}>
           <Text style={styles.sectionTitle}>Descripción</Text>
-          <Text style={styles.descriptionText}>Este es un breve resumen sobre el recorrido y las experiencias que puedes tener en esta ruta. Descubre lugares asombrosos y sumérgete en la cultura local.</Text>
+          <Text style={styles.descriptionText}>Descubre los lugares más emblemáticos de Arequipa en esta ruta llena de historia y cultura. Visita la Plaza de Armas, el Monasterio de Santa Catalina y otros puntos de interés que te sumergirán en la esencia de la ciudad.</Text>
         </View>
 
         {/* Recommended Routes */}
@@ -102,7 +132,6 @@ const RouteDescriptionScreen = () => {
           data={comments}
           renderItem={({ item }) => (
             <View style={styles.commentItem}>
-              <Image source={{ uri: 'https://via.placeholder.com/100' }} style={styles.profileImage} />
               <View style={styles.commentContent}>
                 <Text style={styles.userName}>{item.userName}</Text>
                 <Text style={styles.userSince}>{item.userSince}</Text>
@@ -141,28 +170,14 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   mapContainer: {
-    position: 'relative',
     margin: 20,
     borderRadius: 15,
     overflow: 'hidden',
-  },
-  mapImage: {
-    width: '100%',
     height: 200,
   },
-  mapTitleContainer: {
-    position: 'absolute',
-    top: 15,
-    left: 15,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 20,
-  },
-  mapTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#333',
+  map: {
+    width: '100%',
+    height: '100%',
   },
   infoContainer: {
     flexDirection: 'row',
@@ -172,12 +187,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     backgroundColor: '#fff',
     borderRadius: 8,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 1,
     marginHorizontal: 20,
-    marginBottom: 10, // Adjusted margin to separate from the request guide button section
+    marginBottom: 10,
+    elevation: 1,
   },
   creatorContainer: {
     flexDirection: 'row',
@@ -263,18 +275,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: '#fff',
     borderRadius: 8,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
     elevation: 1,
-  },
-  profileImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginBottom: 10,
-    marginRight: 10,
-    backgroundColor: '#d9d9d9',
   },
   commentContent: {
     flex: 1,
